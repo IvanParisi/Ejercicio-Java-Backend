@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 
-
+import ejercicio.java.backend.exception.ExpDateException;
 import ejercicio.java.backend.exception.NumLenghtException;
 
 public abstract class AbstractCreditCard implements CreditCard
@@ -34,16 +34,15 @@ public abstract class AbstractCreditCard implements CreditCard
 
 	public abstract double tasaDeServicio();
 	
-	public boolean operar(int importe) 
+	public boolean operar(int importe) throws ExpDateException
 	{
-		if(this.esValida()) 
+		
+		if(!this.esValida()) 
 		{
-			if(importe < 1000) 
-			{
-				consumo += importe;
-			}
+			throw new ExpDateException("Tarjeta vencida");
 		}
 		
+		consumo += importe;
 		
 		return importe < 1000 && this.esValida();
 	}
@@ -64,7 +63,7 @@ public abstract class AbstractCreditCard implements CreditCard
 		return tasa;
 	};
 	
-	public boolean esValida() 
+	public boolean esValida()
 	{
 		return expDate.isAfter(YearMonth.now());
 	}

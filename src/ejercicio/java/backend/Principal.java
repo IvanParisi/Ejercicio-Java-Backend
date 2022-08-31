@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-
+import ejercicio.java.backend.exception.ExpDateException;
 import ejercicio.java.backend.exception.NumLenghtException;
 import ejercicio.java.backend.tarjetas.AbstractCreditCard;
 import ejercicio.java.backend.tarjetas.Amex;
@@ -30,20 +30,27 @@ public class Principal
 			tarjetas.add(new Amex(Marcas.NARA,"3713465941706051","Ivan","Parisi",YearMonth.of(2022,12))); 
 		} catch (NumLenghtException e) 
 		{
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		
 		
 		for(CreditCard x : tarjetas) 
 		{
 			System.out.println(x.toString());
-			System.out.println(x.esValida());
+			System.out.println("La tarjeta es valida: " + x.esValida());
 		}
 			
-		System.out.println(AbstractCreditCard.tasaDeOperacion(Marcas.AMEX, 408));
+		System.out.println("Tasa de operacion : " + AbstractCreditCard.tasaDeOperacion(Marcas.AMEX, 408));
 		
 		System.out.println("Son iguales: " + tarjetas.get(0).esDistinta(tarjetas.get(1).getNumT()));
-		System.out.println("Operacion realizada: " + tarjetas.get(0).operar(300));
+		
+		try 
+		{
+			System.out.println("Operacion realizada: " + tarjetas.get(0).operar(300));
+		} catch (ExpDateException e) 
+		{
+			System.out.println(e.getMessage());
+		}
 	}
 
 }
