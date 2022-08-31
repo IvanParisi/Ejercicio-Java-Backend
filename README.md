@@ -1,2 +1,2 @@
 # Ejercicio-Java-Backend
-![alt text](https://github.com/IvanParisi/Ejercicio-Java-Backend/new/main/Consignas.png?raw=true)
+![alt text](https://https://github.com/IvanParisi/Ejercicio-Java-Backend/blob/main/Consignas.PNG)
